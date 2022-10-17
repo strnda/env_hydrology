@@ -1,14 +1,16 @@
 #####
 lop <- c("data.table", "ggplot2", "curl")
 
-to.instal <- lop[which(x = !(lop %in% installed.packages()[,"Package"]))]
+to_instal <- lop[which(x = !(lop %in% installed.packages()[,"Package"]))]
 
-if(length(to.instal) != 0) install.packages(to.instal)
+if(length(to_instal) != 0) install.packages(to_instal)
 
 temp <- lapply(X = lop, 
                FUN = library, 
                character.only = T)
 rm(temp)
+
+"hello world"
 
 #####
 h <- new_handle()
