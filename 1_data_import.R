@@ -9,9 +9,6 @@ temp <- lapply(X = lop,
                FUN = library, 
                character.only = T)
 rm(temp)
-
-"hello world"
-
 #####
 h <- new_handle()
 handle_setopt(
