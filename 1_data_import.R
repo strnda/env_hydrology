@@ -1,5 +1,5 @@
 #####
-lop <- c("data.table", "ggplot2", "curl")
+lop <- c("data.table", "curl")
 
 to_instal <- lop[which(x = !(lop %in% installed.packages()[,"Package"]))]
 
@@ -39,8 +39,6 @@ dl[, `:=`(date = as.IDate(x = gsub(pattern = " ",
                           format = "%Y%m%d"),
           ID = as.factor(x = id))]
 #####
-setwd(dir = dirname(path = rstudioapi::getActiveDocumentContext()$path))
-
 getwd()
 
 saveRDS(object = dl,
