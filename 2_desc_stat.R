@@ -1,6 +1,4 @@
-source(file = "C://Users/strnadf/Desktop/import_dat.R")
-
-"some changes..."
+source(file = "./1_data_import.R")
 
 dta[dta == -99,] <- NA
 
