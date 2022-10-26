@@ -1,5 +1,17 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 # Environmental Hydrology
 
@@ -8,8 +20,7 @@ Collection of scripts and data for **Environmental Hydrology** class
 ## How to get the content of tis repo to your local machine
 
 - without git:
-
-``` r
+```{r, eval = FALSE}
 ## using R
 
 if (!require(curl)) {
@@ -29,23 +40,21 @@ unzip(zipfile = "./data/test.zip",
       exdir = "./data/")
 ```
 
-Or manualy download the archive… ![](figs/download.png)
+Or manualy download the archive...
+![](figs/download.png)
+
 
 - with git
-
-``` bash
+```{bash, eval = FALSE}
 ## using bash (git) commands
 git clone https://github.com/strnda/env_hydrology.git
 ```
 
-Or clone it manually vie Rstudio ide interface: navigate to “New
-Project” \> “Version Control” \> “git” and paste the repo URL
+Or clone it manually vie Rstudio ide interface: navigate to "New Project" > "Version Control" > "git" and paste the repo URL
 ![](figs/git_repo_clone.png)
 
 # Content of the repository
 
-- In the **R** folder you can find important scripts from the seminars
-  named in logical order (1 - data import, 2 - basic data analysis,
-  etc…)  
-- **Data** folder contains data used as an example dataset for the
-  seminars
+- In the **R** folder you can find important scripts from the seminars named in logical order (1 - data import, 2 - basic data analysis, etc...)    
+- **Data** folder contains data used as an example dataset for the seminars
+
