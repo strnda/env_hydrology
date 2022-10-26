@@ -39,7 +39,7 @@ git clone https://github.com/strnda/env_hydrology.git
 ```
 
 Or clone it manually vie Rstudio ide interface: navigate to “New
-Project” \> “Version Control” \> “git” and paste the repo URL
+Project” \> “Version Control” \> “git” and paste the repo URL  
 ![](figs/git_repo_clone.png)
 
 # Content of the repository
