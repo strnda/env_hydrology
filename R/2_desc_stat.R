@@ -1,4 +1,6 @@
-source(file = "./1_data_import.R")
+# source(file = "./1_data_import.R")
+
+dta <- readRDS(file = "./data/mopex_data.rds")
 
 dta[dta == -99,] <- NA
 
@@ -57,3 +59,32 @@ temp_2 <- dta_m[(variable == "P") & (value > 0),
 desc_stat <- rbind(temp_1, temp_2)
 
 desc_stat
+
+ggplot(data = dta_m) +
+  geom_line(mapping = aes(x = date,
+                          y = value, 
+                          colour = variable), 
+            na.rm = TRUE, 
+            show.legend = FALSE) +
+  facet_wrap(facets = ~variable, 
+             ncol = 1, 
+             scales = "free_y")
+
+# ggplot(data = dta_m) +
+#   geom_histogram(mapping = aes(x = value,
+#                                fill = variable), 
+#                  na.rm = TRUE, 
+#                  show.legend = FALSE) +
+#   facet_wrap(facets = ~variable, 
+#              ncol = 5, 
+#              scales = "free")
+# 
+# ggplot(data = dta_m) +
+#   geom_density(mapping = aes(x = value,
+#                                fill = variable), 
+#                  na.rm = TRUE, 
+#                  show.legend = FALSE) +
+#   facet_wrap(facets = ~variable, 
+#              ncol = 5, 
+#              scales = "free")
+

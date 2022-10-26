@@ -1,5 +1,5 @@
 #####
-lop <- c("data.table", "curl")
+lop <- c("data.table", "curl", "ggplot2")
 
 to_instal <- lop[which(x = !(lop %in% installed.packages()[,"Package"]))]
 
@@ -39,8 +39,8 @@ dl[, `:=`(date = as.IDate(x = gsub(pattern = " ",
 getwd()
 
 saveRDS(object = dl,
-        file = "mopex_data.rds")
+        file = "./data/mopex_data.rds")
 
-dta <- readRDS(file = "mopex_data.rds")
+dta <- readRDS(file = "./data/mopex_data.rds")
 str(object = dta)
 #####
