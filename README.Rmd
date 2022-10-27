@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 
 Collection of scripts and data for **Environmental Hydrology** class
 
+**New [Datacamp](https://www.datacamp.com/groups/shared_links/4d01725e80c0cadfad7198b7e1327c9e2bf83b24976b2e52c029e9aace509ccf) invite link**
+
 ## How to get the content of tis repo to your local machine
 
 - without git:
