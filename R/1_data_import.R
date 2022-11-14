@@ -1,9 +1,22 @@
+##### 
+if (as.numeric(x = R.Version()$minor) < 2.2) {
+  
+  if (!require(installr)) {
+    
+    install.packages("installr")
+  }
+  
+  installr::install.R()
+}
 #####
-lop <- c("data.table", "curl", "ggplot2")
+lop <- c("data.table", "curl", "ggplot2", "DEoptim", "hydroGOF")
 
 to_instal <- lop[which(x = !(lop %in% installed.packages()[,"Package"]))]
 
-if(length(to_instal) != 0) install.packages(to_instal)
+if(length(to_instal) != 0) {
+  
+  install.packages(to_instal)
+}
 
 temp <- lapply(X = lop, 
                FUN = library, 
@@ -41,6 +54,6 @@ getwd()
 saveRDS(object = dl,
         file = "./data/mopex_data.rds")
 
-dta <- readRDS(file = "./data/mopex_data.rds")
-str(object = dta)
+# dta <- readRDS(file = "./data/mopex_data.rds")
+# str(object = dta)
 #####

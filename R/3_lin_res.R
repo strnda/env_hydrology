@@ -1,7 +1,9 @@
 dta <- readRDS(file = "./data/mopex_data.rds")
 
-ln <- function(IN, S0 = 1, k = .1) {
+dta <- dta[Q >= 0,]
 
+ln_simple <- function(IN, S0 = 1, k = .1) {
+  
   OUT <- vector(mode = "numeric",
                 length = length(x = IN))
   S <- S0
@@ -15,25 +17,25 @@ ln <- function(IN, S0 = 1, k = .1) {
   OUT
 }
 
-test <- ln(IN = dta$P,
-           S0 = 100, 
-           k = .4)
+sim <- ln_simple(IN = dta$P,
+                 S0 = 100, 
+                 k = .4)
 
 plot(x = dta$Q[1:500], 
      type = "l")
-lines(x = test[1:500], 
+lines(x = sim[1:500], 
       col = "red")
 
-# install.packages("hydroGOF")
-# install.packages("DEoptim")
+NSE(sim = sim,
+    obs = dta$Q)
+KGE(sim = sim,
+    obs = dta$Q)
 
-library(hydroGOF); library(DEoptim)
-
-ln_model <- function(IN, 
-                     a = .25,  
-                     S0_1 = 100, k_1 = .1,
-                     S0_2 = 15, k_2 = .2,
-                     S0_3 = 50, k_3 = .05) {
+ln_complex <- function(IN, 
+                       a = .25,  
+                       S0_1 = 100, k_1 = .1,
+                       S0_2 = 15, k_2 = .2,
+                       S0_3 = 50, k_3 = .05) {
   
   OUT <- S_1 <- S_2 <- S_3 <-
     Q_1 <- Q_2 <- Q_3 <- vector(mode = "numeric",
@@ -68,26 +70,17 @@ ln_model <- function(IN,
   sim
 }
 
-test <- ln_model(IN = dta$P)
-
-# plot(x = dta$Q[1:750], 
-#      type = "l")
-# lines(x = test$OUT[1:750], 
-#       col = "red")
-
-dta <- dta[Q >= 0,]
-
 opt_fun <- function(x, dta) {
   
-  sim <- ln_model(IN = dta$P,
-                  a = x[1],
-                  S0_1 = x[2], k_1 = x[3],
-                  S0_2 = x[4], k_2 = x[5],
-                  S0_3 = x[6], k_3 = x[7])
+  sim <- ln_complex(IN = dta$P,
+                    a = x[1],
+                    S0_1 = x[2], k_1 = x[3],
+                    S0_2 = x[4], k_2 = x[5],
+                    S0_3 = x[6], k_3 = x[7])
   
   obj <- NSE(sim = sim$OUT, 
              obs = dta$Q)
-  obj <- (obj - 1) * -1
+  obj <- obj * -1
   
   obj
 }
@@ -103,18 +96,23 @@ fit <- DEoptim(fn = opt_fun,
                          S0_3 = 500, k_3 = 1), 
                dta = dta, 
                control = DEoptim.control(itermax = 50, 
-                                         VTR = 0))
+                                         VTR = -1))
 
 fit$optim$bestmem
 
-sim <- ln_model(IN = dta$P,
-                a = fit$optim$bestmem[1],
-                S0_1 = fit$optim$bestmem[2], k_1 = fit$optim$bestmem[3],
-                S0_2 = fit$optim$bestmem[4], k_2 = fit$optim$bestmem[5],
-                S0_3 = fit$optim$bestmem[6], k_3 = fit$optim$bestmem[7])
+sim <- ln_complex(IN = dta$P,
+                  a = fit$optim$bestmem[1],
+                  S0_1 = fit$optim$bestmem[2], k_1 = fit$optim$bestmem[3],
+                  S0_2 = fit$optim$bestmem[4], k_2 = fit$optim$bestmem[5],
+                  S0_3 = fit$optim$bestmem[6], k_3 = fit$optim$bestmem[7])
 
 
 plot(x = dta$Q[1:750],
      type = "l")
 lines(x = sim$OUT[1:750],
       col = "red")
+
+NSE(sim = sim$OUT,
+    obs = dta$Q)
+KGE(sim = sim$OUT,
+    obs = dta$Q)
