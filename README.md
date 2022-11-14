@@ -17,7 +17,7 @@ invite link**
 ## using R
 
 if (!require(curl)) {
-  install.packages(curl)
+  install.packages("curl")
 }
 require(curl)
 
