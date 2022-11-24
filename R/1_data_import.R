@@ -6,7 +6,9 @@ if (as.numeric(x = R.Version()$minor) < 2.2) {
     install.packages("installr")
   }
   
-  installr::install.R()
+  installr::install.R(silent = TRUE)
+  
+  q()
 }
 #####
 lop <- c("data.table", "curl", "ggplot2", "DEoptim", "hydroGOF")
