@@ -6,7 +6,7 @@
 Collection of scripts and data for **Environmental Hydrology** class
 
 **New
-[Datacamp]([https://www.datacamp.com/groups/shared_links/95002478c16d7bb4ff9e3260dfffdd362a13958d17635117bfcc19bed333f814](https://www.datacamp.com/groups/shared_links/41eaf0594835331d7a65ca8a83e94aaed1638b3155c42041702b5724763c5ee9)
+[Datacamp](https://www.datacamp.com/groups/shared_links/41eaf0594835331d7a65ca8a83e94aaed1638b3155c42041702b5724763c5ee9)
 invite link**
 
 ## How to get the content of tis repo to your local machine
